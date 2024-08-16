@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Login from './Login'
+import Logout from './Logout'
+import { useAuth } from '../context/AuthProvider'
 
 function Navbar() {
+  const [ authUser, setAuthUser ]=useState()
+
     const[sticky,setSticky]=useState(false)
     useEffect(()=>{
         const handleScrooll=()=>{
@@ -80,13 +84,18 @@ function Navbar() {
   </svg>
 </label>
   </div>
-  <div className="">
+  {authUser ? (
+  <Logout/>
+  ) : (
+    <div className="">
     <a className="bg-black text-white px-3 py-2 rounded-md hover:bg-slate-800 duration-300 cursor-pointer"
     onClick={()=>document.getElementById('my_modal_3').showModal()}>
         Login
     </a>
     <Login/>
   </div>
+  )}
+  
   </div>
 </div>
     </div>
